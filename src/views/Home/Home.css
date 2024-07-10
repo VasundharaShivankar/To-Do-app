@@ -17,7 +17,7 @@
     margin-top: 20px;
 }
 .task-input{
-    width:390px;
+    width:300px;
     height:40px;
     border-radius: 5px;
     font-size: 24px;
@@ -35,5 +35,11 @@
 .insert-button:hover{
     transform:rotate(90deg);
     transition:0.5s;
+}
+.category-options{
+    height:42px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-left: 5px;
 }
 

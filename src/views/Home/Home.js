@@ -15,7 +15,7 @@ function Home() {
    }
   ])
   const [newTask, setNewTask] = useState("")
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("Personal")  
 
   const notify = () => toast('Task Added Successfully!');
 
@@ -24,34 +24,34 @@ function Home() {
     if(storedTodoList){
         setTodoList(JSON.parse(storedTodoList))
     }
-},[])
+  },[])
 
-useEffect(()=>{
-  if(todoList.length === 0) return
-  localStorage.setItem("todoList", JSON.stringify(todoList))
-}, [todoList])
+  useEffect(()=>{
+    if(todoList.length === 0) return
+    localStorage.setItem("todoList", JSON.stringify(todoList))
+  }, [todoList])
 
-function deleteTask(index){
-  Swal.fire({
-      title: "Delete the Task!",
-      text:"Are you sure, you want to delete this task?",
-      icon: "warning",
-      showCancelButton: true
-  }).then((result)=>{
-      if(!result.isConfirmed){
-          return
-      }
-      const newTodoList = todoList.filter((item, i)=>{
-          if(i == index){
-              return false
-          }
-          else{
-            return true
+  function deleteTask(index){
+    Swal.fire({
+        title: "Delete the Task!",
+        text:"Are you sure, you want to delete this task?",
+        icon: "warning",
+        showCancelButton: true
+    }).then((result)=>{
+        if(!result.isConfirmed){
+            return
         }
+        const newTodoList = todoList.filter((item, i)=>{
+            if(i === index){
+                return false
+            }
+            else{
+              return true
+          }
+      })
+    setTodoList(newTodoList)
     })
-setTodoList(newTodoList)
-})
-}
+  }
 
   return (<>
     <div>
@@ -59,30 +59,32 @@ setTodoList(newTodoList)
       <div className="todo-app-container">
       {todoList.map((todoItem,i)=>{
         const {task,category}=todoItem;
-        return  <TodoCard key={i} task={task} category={category} deleteTask={deleteTask}/>
+        return  <TodoCard key={i} index={i} task={task} category={category} deleteTask={deleteTask}/>
       })}
       
       {
-        todoList.length===0?(
-        <p>
+        todoList.length === 0 ? (
+        <p style={{fontSize:20, textAlign:'center'}}>
           No Tasks to show, please add new Tasks
         </p>)
-        :
-       null
-        }
+        : null
+      }
       </div>
 
       <div className="input-container">
         <input 
-        type="text" 
-        className='task-input'
-        placeholder='Add New Tasks Here'
-        value={newTask}
-        onChange={(e)=>setNewTask(e.target.value)}
-        >
-        </input>
+          type="text" 
+          className='task-input'
+          placeholder='Add New Tasks Here'
+          value={newTask}
+          onChange={(e)=>setNewTask(e.target.value)}
+        />
         
-        <select>
+        <select
+        className='category-options'
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
           <option value="Personal">Personal</option>
           <option value="Work">Work</option>
           <option value="Study">Study</option>
@@ -90,28 +92,28 @@ setTodoList(newTodoList)
           <option value="Health">Health</option>
           <option value="Others">Others</option>
         </select>
-        <img src={Insert} 
-        className="insert-button" 
-        alt="Insert"
-        onClick={()=>{
-          if(newTask === ""){
-              toast.error('Task must not be empty!!!')
-              return
-          }
+        <img 
+          src={Insert} 
+          className="insert-button" 
+          alt="Insert"
+          onClick={()=>{
+            if(newTask === ""){
+                toast.error('Task must not be empty!!!')
+                return
+            }
 
-          if(category === ""){
-              toast.error('Choose the Task category!!!')
-              return
-          }
-          setTodoList([...todoList, {task: newTask, category: category}])
-          setCategory("")
-          setNewTask("")
-          toast.success('Hurrey!! Task Added successfully')
-      }}
-
-/>
-    
+            if(category === ""){
+                toast.error('Choose the Task category!!!')
+                return
+            }
+            setTodoList([...todoList, {task: newTask, category: category}])
+            setCategory("Personal")
+            setNewTask("")
+            toast.success('Hurrey!! Task Added successfully')
+          }}
+        />
       </div>
+      <Toaster/>
     </div>
   </>)
 }
