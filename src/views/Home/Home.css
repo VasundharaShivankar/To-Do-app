@@ -32,4 +32,8 @@
    padding: 0;
    margin-left: 5px;
 }
+.insert-button:hover{
+    transform:rotate(90deg);
+    transition:0.5s;
+}
 
