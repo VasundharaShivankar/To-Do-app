@@ -5,19 +5,21 @@ import Delete from "./trash-bins.png"
 function TodoCard({ index, task, category, deleteTask }) {
 
   const Category_emoji= {
-    personal: "📅",
-    work:"🏢",
-    study: "📚",
-    shopping: "🛒",
-    health:"🏥",
-    others: "🎥"
+    Personal: "📅",
+    Work:"🏢",
+    Study: "📚",
+    Shopping: "🛒",
+    Health:"🏥",
+    Others: "🎥"
   }
 
   const Category_colors = {
-    homechores: "#1ac6ff",
-    study: "#66ff33",
-    shopping: "#e6f600",
-    others: "#ff884d"
+    Personal: "#F5C982",
+    Work:"#7BD1FF",
+    Study: "#E2A2FF",
+    Shopping: "#FFAEA3",
+    Health:"#B8FFD1",
+    Others: "#F1FF96"
   }
 
   return (

@@ -5,7 +5,7 @@
     border-radius: 5px;
     font-size: large;
     position: relative;
-    background-color:rgb(236, 202, 157);
+    background-color:#89ffba;
     display: flex;
     align-items: center;
 }
@@ -14,7 +14,6 @@
     position: absolute;
     top: 5px;
     right: 10px;
-    background-color: antiquewhite;
     padding: 1px 5px;
     width: 90px;
     text-align: center;
