@@ -4,7 +4,7 @@ import Delete from "./trash-bins.png"
 
 function TodoCard({ index, task, category, deleteTask }) {
 
-  const Category_emoji_map = {
+  const Category_emoji= {
     personal: "📅",
     work:"🏢",
     study: "📚",
@@ -31,7 +31,7 @@ function TodoCard({ index, task, category, deleteTask }) {
       <span className="category-task" style={{
         backgroundColor: Category_colors[category]
       }}>
-        {Category_emoji_map[category]} {category}
+        {Category_emoji[category]} {category}
       </span>
       </div>
     </div>
